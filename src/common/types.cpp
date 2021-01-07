@@ -45,7 +45,7 @@ std::string Ip6Address::ToString() const
 {
     char strbuf[INET6_ADDRSTRLEN];
 
-    VerifyOrDie(inet_ntop(AF_INET6, this->m8, strbuf, sizeof(strbuf)) != nullptr,
+    OtbrVerifyOrDie(inet_ntop(AF_INET6, this->m8, strbuf, sizeof(strbuf)) != nullptr,
                 "Failed to convert Ip6 address to string");
 
     return std::string(strbuf);
@@ -102,7 +102,7 @@ std::string Ip6Prefix::ToString() const
     std::stringbuf strBuilder;
     char           strbuf[INET6_ADDRSTRLEN];
 
-    VerifyOrDie(inet_ntop(AF_INET6, mPrefix.m8, strbuf, sizeof(strbuf)) != nullptr,
+    OtbrVerifyOrDie(inet_ntop(AF_INET6, mPrefix.m8, strbuf, sizeof(strbuf)) != nullptr,
                 "Failed to convert Ip6 prefix to string");
 
     strBuilder.sputn(strbuf, strlen(strbuf));

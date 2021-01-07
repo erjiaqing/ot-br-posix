@@ -90,7 +90,7 @@ void PublishSingleServiceWithCustomHost(void *aContext, Mdns::Publisher::State a
     hostAddr[1]  = 0x02;
     hostAddr[15] = 0x01;
 
-    VerifyOrDie(aContext == &sContext, "unexpected context");
+    OtbrVerifyOrDie(aContext == &sContext, "unexpected context");
     if (aState == Mdns::Publisher::State::kReady)
     {
         otbrError                error;
@@ -115,7 +115,7 @@ void PublishMultipleServicesWithCustomHost(void *aContext, Mdns::Publisher::Stat
     hostAddr[1]  = 0x02;
     hostAddr[15] = 0x01;
 
-    VerifyOrDie(aContext == &sContext, "unexpected context");
+    OtbrVerifyOrDie(aContext == &sContext, "unexpected context");
     if (aState == Mdns::Publisher::State::kReady)
     {
         otbrError                error;

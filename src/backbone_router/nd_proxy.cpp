@@ -111,7 +111,7 @@ exit:
 void NdProxyManager::Init(void)
 {
     mBackboneIfIndex = if_nametoindex(InstanceParams::Get().GetBackboneIfName());
-    VerifyOrDie(mBackboneIfIndex > 0, "if_nametoindex failed");
+    OtbrVerifyOrDie(mBackboneIfIndex > 0, "if_nametoindex failed");
 }
 
 void NdProxyManager::UpdateFdSet(fd_set & aReadFdSet,

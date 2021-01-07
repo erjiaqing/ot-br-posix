@@ -583,7 +583,7 @@ otbrError PublisherAvahi::UnpublishService(const char *aName, const char *aType)
     OTBR_UNUSED_VARIABLE(aName);
     OTBR_UNUSED_VARIABLE(aType);
 
-    VerifyOrDie(false, "UnpublishService is not implemented with avahi");
+    OtbrVerifyOrDie(false, "UnpublishService is not implemented with avahi");
 
     return OTBR_ERROR_NONE;
 }
@@ -594,7 +594,7 @@ otbrError PublisherAvahi::PublishHost(const char *aName, const uint8_t *aAddress
     OTBR_UNUSED_VARIABLE(aAddress);
     OTBR_UNUSED_VARIABLE(aAddressLength);
 
-    VerifyOrDie(false, "PublishHost is not implemented with avahi");
+    OtbrVerifyOrDie(false, "PublishHost is not implemented with avahi");
 
     return OTBR_ERROR_NONE;
 }
@@ -603,7 +603,7 @@ otbrError PublisherAvahi::UnpublishHost(const char *aName)
 {
     OTBR_UNUSED_VARIABLE(aName);
 
-    VerifyOrDie(false, "UnpublishHost is not implemented with avahi");
+    OtbrVerifyOrDie(false, "UnpublishHost is not implemented with avahi");
 
     return OTBR_ERROR_NONE;
 }

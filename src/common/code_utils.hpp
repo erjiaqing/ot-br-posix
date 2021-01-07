@@ -111,7 +111,7 @@
  * @param[in]   aMessage    A message (text string) to print on failure.
  *
  */
-#define VerifyOrDie(aCondition, aMessage)                                                   \
+#define OtbrVerifyOrDie(aCondition, aMessage)                                                   \
     do                                                                                      \
     {                                                                                       \
         if (!(aCondition))                                                                  \
