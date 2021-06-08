@@ -229,8 +229,9 @@ void ControllerOpenThread::Process(const otSysMainloopContext &aMainloop)
 {
     auto now = steady_clock::now();
 
+    otbrLog(OTBR_LOG_CRIT, "otTaskletsProcess start");
     otTaskletsProcess(mInstance);
-
+    otbrLog(OTBR_LOG_CRIT, "otSysMainloopProcess start");
     otSysMainloopProcess(mInstance, &aMainloop);
 
     while (!mTimers.empty() && mTimers.begin()->first <= now)

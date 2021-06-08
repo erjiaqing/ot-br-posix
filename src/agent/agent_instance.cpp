@@ -68,7 +68,9 @@ void AgentInstance::UpdateFdSet(otSysMainloopContext &aMainloop)
 
 void AgentInstance::Process(const otSysMainloopContext &aMainloop)
 {
+    otbrLog(OTBR_LOG_CRIT, "mNcp->Process start");
     mNcp->Process(aMainloop);
+    otbrLog(OTBR_LOG_CRIT, "mBorderAgent->Process start");
     mBorderAgent.Process(aMainloop.mReadFdSet, aMainloop.mWriteFdSet, aMainloop.mErrorFdSet);
 }
 

@@ -152,7 +152,9 @@ public:
         }
 
         VerifyOrExit(reply != nullptr);
+        otbrLog(logLevel, "Sending reply");
         dbus_connection_send(mConnection, reply.get(), nullptr);
+        otbrLog(logLevel, "Reply queued");
 
     exit:
         return;

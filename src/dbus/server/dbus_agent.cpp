@@ -166,8 +166,9 @@ void DBusAgent::Process(const fd_set &aReadFdSet, const fd_set &aWriteFdSet, con
         {
             flags |= DBUS_WATCH_ERROR;
         }
-
+        otbrLog(OTBR_LOG_ERR, "dbus_watch_handle(%p, %d) start", watch, int(flags));
         dbus_watch_handle(watch, flags);
+        otbrLog(OTBR_LOG_ERR, "dbus_watch_handle(%p) end", watch);
     }
 
     while (DBUS_DISPATCH_DATA_REMAINS == dbus_connection_dispatch(mConnection.get()))

@@ -169,10 +169,11 @@ static int Mainloop(otbr::AgentInstance &aInstance, const char *aInterfaceName)
 #if OTBR_ENABLE_REST_SERVER
             restServer->Process(mainloop);
 #endif
-
+            otbrLog(OTBR_LOG_CRIT, "aInstance.Process start");
             aInstance.Process(mainloop);
 
 #if OTBR_ENABLE_DBUS_SERVER
+            otbrLog(OTBR_LOG_CRIT, "dbusAgent->Process start");
             dbusAgent->Process(mainloop.mReadFdSet, mainloop.mWriteFdSet, mainloop.mErrorFdSet);
 #endif
         }
