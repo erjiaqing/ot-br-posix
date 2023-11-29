@@ -69,13 +69,35 @@ OTBR_TARGET=${OTBR_TARGET-}
 main()
 {
     local builddir="${OTBR_BUILD_DIR:-${OTBR_TOP_BUILD_DIR}}"
+    local local_options=()
+
+    if [ "x" != "x${SYSROOT-}" ]; then
+        if [ "x" == "x${TARGET_TRIPLE-}" ]; then
+            exit 2
+        fi
+        local_options+=(
+            "-DSYSROOT=${SYSROOT}"
+            "-DTARGET_TRIPLE=${TARGET_TRIPLE}"
+            "-DCMAKE_TOOLCHAIN_FILE=${OTBR_TOP_SRCDIR}/etc/cmake/crosscompile.toolchain.cmake"
+        )
+
+        # In some cases, the protoc on host might mismatch the protobuf library in sysroot for target.
+        if [ "x" != "x${PROTOBUF_PATH-}" ]; then
+            export PATH="${PROTOBUF_PATH}/bin:$PATH"
+        fi
+
+        export REAL_PKG_CONFIG="${PKG_CONFIG-}"
+        export PKG_CONFIG="${OTBR_TOP_SRCDIR}/etc/cmake/pkg-config"
+
+        echo "*** Uses crosscompile configuration! ***"
+    fi
 
     mkdir -p "${builddir}"
 
     (
         cd "${builddir}" || die "Failed to enter ${builddir}"
 
-        cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON "${OTBR_TOP_SRCDIR}" "$@"
+        cmake -GNinja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON "${OTBR_TOP_SRCDIR}" "${local_options[@]}" "$@"
 
         if [[ -n ${OTBR_TARGET[*]} ]]; then
             ninja "${OTBR_TARGET[@]}"
