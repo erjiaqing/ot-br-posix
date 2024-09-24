@@ -1,11 +1,10 @@
 #!/bin/bash
 
 REPO_SCRIPT="$(dirname "$0")"
-INFRA_IF_NAME="${INFRA_IF_NAME:-eth0}"
 
 customise_dhcpcd_conf()
 {
-sudo tee /etc/dhcpcd.conf > /dev/null <<EOF
+    sudo tee /etc/dhcpcd.conf >/dev/null <<EOF
 # A sample configuration for dhcpcd.
 # See dhcpcd.conf(5) for details.
 
@@ -46,7 +45,7 @@ dhcpv6_pd_ref_stop()
     if [[ -f "/etc/dhcpcd.conf.orig" ]]; then
         sudo mv /etc/dhcpcd.conf.orig /etc/dhcpcd.conf
     fi
-    sudo systemctl restart dhcpcd 
+    sudo systemctl restart dhcpcd
     sudo rm -f /etc/dhcpcd.enter-hook /etc/dhcpcd.exit-hook
 }
 
